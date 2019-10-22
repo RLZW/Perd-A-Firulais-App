@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Perdí a Firulais</string>
+    <string name="title_activity_main_menu">MainMenu</string>
+    <string name="title_home">Perfil</string>
+    <string name="title_dashboard">Buscar</string>
+    <string name="title_notifications">Añadir</string>
+</resources>
