@@ -14,9 +14,13 @@
         <activity android:name=".Register"></activity>
         <activity android:name=".Camera.BrowsePicture" />
         <activity android:name=".Camera.TakePicture" />
-        <activity
-            android:name=".MainMenu"
-            android:label="@string/title_activity_main_menu" />
+        <activity android:name=".MainMenu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

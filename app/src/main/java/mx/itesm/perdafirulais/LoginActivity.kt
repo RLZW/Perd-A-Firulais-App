@@ -51,7 +51,9 @@ class LoginActivity : AppCompatActivity() {
                         this, "Login Satisfactorio.",
                         Toast.LENGTH_SHORT
                     ).show()
-                    startActivity(Intent(this, MainMenu::class.java))
+                    val intent = Intent(this, MainMenu::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
 
                 } else {
                     Toast.makeText(
