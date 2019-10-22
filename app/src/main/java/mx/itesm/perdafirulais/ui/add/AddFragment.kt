@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_add.*
+import mx.itesm.perdafirulais.Camera.BrowsePicture
 import mx.itesm.perdafirulais.Camera.TakePicture
 import mx.itesm.perdafirulais.R
 
@@ -33,9 +34,14 @@ class AddFragment : Fragment() {
         })
 
         val buttonCam: Button = root.findViewById(R.id.btnCamara)
-
         buttonCam.setOnClickListener {
             val intent = Intent(activity, TakePicture::class.java)
+            activity?.startActivity(intent)
+        }
+
+        val buttonBrowse: Button = root.findViewById(R.id.btnGaleria)
+        buttonBrowse.setOnClickListener {
+            val intent = Intent(activity, BrowsePicture::class.java)
             activity?.startActivity(intent)
         }
         return root
