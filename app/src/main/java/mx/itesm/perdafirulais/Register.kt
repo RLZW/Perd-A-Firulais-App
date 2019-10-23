@@ -106,5 +106,11 @@ class Register : AppCompatActivity() {
             }
     }
 
-    class User(val uid: String, val username: String, val mail: String, val phone: String)
+    class User(
+        val uid: String = "",
+        val username: String = "",
+        val mail: String = "",
+        val phone: String = ""
+    )
+
 }
