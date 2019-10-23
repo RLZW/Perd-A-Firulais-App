@@ -30,6 +30,11 @@ class LoginActivity : AppCompatActivity() {
             manejarLogin()
         }
 
+        btnInfo.setOnClickListener {
+            val intent = Intent(this, Info::class.java)
+            startActivity(intent)
+        }
+
         // Write a message to the database
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("message")

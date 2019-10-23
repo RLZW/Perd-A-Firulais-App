@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Register"></activity>
+        <activity android:name=".Info"></activity>
+        <activity android:name=".Register" />
         <activity android:name=".Camera.BrowsePicture" />
         <activity android:name=".Camera.TakePicture" />
         <activity android:name=".MainMenu">
