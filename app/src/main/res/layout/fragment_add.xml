@@ -5,30 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/imgLogo5"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="80dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_notifications"
+        app:srcCompat="@drawable/icon" />
+
     <Button
-        android:id="@+id/btnCamara"
+        android:id="@+id/btnEncontre"
         style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:layout_marginBottom="128dp"
-        android:text="Tomar fotografía"
+        android:text="Encontré un firulais"
         android:textColor="@color/design_default_color_primary_dark"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_notifications" />
+        app:layout_constraintEnd_toEndOf="@+id/imgLogo5"
+        app:layout_constraintStart_toStartOf="@+id/imgLogo5"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogo5" />
 
     <Button
-        android:id="@+id/btnGaleria"
+        android:id="@+id/btnPerdi"
         style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:layout_marginTop="32dp"
-        android:text="Añadir de Galeria"
+        android:layout_marginTop="16dp"
+        android:text="Perdí un firulais"
         android:textColor="@color/design_default_color_primary_dark"
-        app:layout_constraintEnd_toEndOf="@+id/btnCamara"
-        app:layout_constraintStart_toStartOf="@+id/btnCamara"
-        app:layout_constraintTop_toBottomOf="@+id/btnCamara" />
+        app:layout_constraintEnd_toEndOf="@+id/btnEncontre"
+        app:layout_constraintStart_toStartOf="@+id/btnEncontre"
+        app:layout_constraintTop_toBottomOf="@+id/btnEncontre" />
 
     <TextView
         android:id="@+id/text_notifications"

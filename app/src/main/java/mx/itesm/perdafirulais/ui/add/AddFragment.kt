@@ -10,9 +10,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import kotlinx.android.synthetic.main.fragment_add.*
-import mx.itesm.perdafirulais.Camera.BrowsePicture
-import mx.itesm.perdafirulais.Camera.TakePicture
+import mx.itesm.perdafirulais.PerdiSeleccion
+import mx.itesm.perdafirulais.EncontreSeleccion
 import mx.itesm.perdafirulais.R
 
 class AddFragment : Fragment() {
@@ -33,15 +32,15 @@ class AddFragment : Fragment() {
             textView.text = it
         })
 
-        val buttonCam: Button = root.findViewById(R.id.btnCamara)
-        buttonCam.setOnClickListener {
-            val intent = Intent(activity, TakePicture::class.java)
+        val buttonEncontre: Button = root.findViewById(R.id.btnEncontre)
+        buttonEncontre.setOnClickListener {
+            val intent = Intent(activity, EncontreSeleccion::class.java)
             activity?.startActivity(intent)
         }
 
-        val buttonBrowse: Button = root.findViewById(R.id.btnGaleria)
-        buttonBrowse.setOnClickListener {
-            val intent = Intent(activity, BrowsePicture::class.java)
+        val buttonPerdi: Button = root.findViewById(R.id.btnPerdi)
+        buttonPerdi.setOnClickListener {
+            val intent = Intent(activity, PerdiSeleccion::class.java)
             activity?.startActivity(intent)
         }
         return root

@@ -22,9 +22,7 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, Register::class.java)
             startActivity(intent)
         }
-
         mAuth = FirebaseAuth.getInstance()
-
         btnIngresar.setOnClickListener {
             Log.d(tag, "Intentando Logear")
             manejarLogin()
@@ -45,13 +43,14 @@ class LoginActivity : AppCompatActivity() {
     private fun manejarLogin() {
         val mail = etMail.text.toString()
         val password = etPassword.text.toString()
-        if (mail.isBlank() || password.isBlank()) {
+        if (mail.isNullOrBlank() || password.isNullOrBlank()) {
             Toast.makeText(
                 this, "Falta llenar alguno de los campos.",
                 Toast.LENGTH_SHORT
             ).show()
+        } else {
+            login(mail, password)
         }
-        login(mail, password)
     }
 
     private fun login(mail: String, password: String) {

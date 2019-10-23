@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Info"></activity>
+        <activity android:name=".PerdiRegistro"></activity>
+        <activity android:name=".EncontreRegistro" />
+        <activity android:name=".PerdiSeleccion" />
+        <activity android:name=".EncontreSeleccion" />
+        <activity android:name=".Info" />
         <activity android:name=".Register" />
         <activity android:name=".Camera.BrowsePicture" />
         <activity android:name=".Camera.TakePicture" />
