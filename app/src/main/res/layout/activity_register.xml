@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Correo Electronico"
+        android:hint="Correo Electrónico"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="@+id/etUser"
         app:layout_constraintStart_toStartOf="@+id/etUser"
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Contrasena"
+        android:hint="Contraseña"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/etMail"
         app:layout_constraintStart_toStartOf="@+id/etMail"
@@ -75,21 +75,35 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Repetir Contrasena"
+        android:hint="Repetir Contraseña"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/etPassword"
         app:layout_constraintStart_toStartOf="@+id/etPassword"
         app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
+    <EditText
+        android:id="@+id/etPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Teléfono"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="@+id/etRPassword"
+        app:layout_constraintHorizontal_bias="0.395"
+        app:layout_constraintStart_toStartOf="@+id/etRPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etRPassword" />
+
     <CheckBox
         android:id="@+id/checkboxTerminosyCondiciones"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Terminos y Condiciones"
         app:layout_constraintEnd_toEndOf="@+id/etRPassword"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/etRPassword"
-        app:layout_constraintTop_toBottomOf="@+id/etRPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/etPhone" />
 
     <Button
         android:id="@+id/btnIngresarRegistro"
