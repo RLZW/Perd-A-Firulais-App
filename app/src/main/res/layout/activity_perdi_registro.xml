@@ -6,4 +6,104 @@
     android:layout_height="match_parent"
     tools:context=".PerdiEncontre.perdi.PerdiRegistro">
 
+    <ImageView
+        android:id="@+id/fondo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/bonesback" />
+
+    <ImageView
+        android:id="@+id/imgPerroRegistro"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="80dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon" />
+
+    <EditText
+        android:id="@+id/etTitulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:ems="10"
+        android:hint="Título"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRaza" />
+
+    <EditText
+        android:id="@+id/etComentarios"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Comentarios"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/etUbicacion"
+        app:layout_constraintStart_toStartOf="@+id/etUbicacion"
+        app:layout_constraintTop_toBottomOf="@+id/etTitulo" />
+
+    <TextView
+        android:id="@+id/tvRaza"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="176dp"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toBottomOf="@+id/textView13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView12"
+        app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+    <EditText
+        android:id="@+id/etUbicacion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Ubicación donde fue encontrado"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/etTitulo"
+        app:layout_constraintStart_toStartOf="@+id/etTitulo"
+        app:layout_constraintTop_toBottomOf="@+id/etComentarios" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="24dp"
+        android:text="Raza:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgPerroRegistro" />
+
+    <Button
+        android:id="@+id/btnRegistrar"
+        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="32dp"
+        android:text="Registrar"
+        android:textColor="@color/design_default_color_primary_dark"
+        app:layout_constraintEnd_toEndOf="@+id/etComentarios"
+        app:layout_constraintStart_toStartOf="@+id/etComentarios"
+        app:layout_constraintTop_toBottomOf="@+id/etUbicacion" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

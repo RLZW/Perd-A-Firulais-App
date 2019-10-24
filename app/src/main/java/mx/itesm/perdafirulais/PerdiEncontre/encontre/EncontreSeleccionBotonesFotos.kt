@@ -25,7 +25,5 @@ class EncontreSeleccionBotonesFotos : AppCompatActivity() {
             intent.putExtra("identificador", "encontre")
             startActivity(intent)
         }
-
-
     }
 }

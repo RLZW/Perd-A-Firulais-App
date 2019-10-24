@@ -14,10 +14,15 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
+import kotlinx.android.synthetic.main.dog_row_rv.view.*
+import kotlinx.android.synthetic.main.fragment_search.*
 import mx.itesm.perdafirulais.R
+import mx.itesm.perdafirulais.models.Publicacion
+import mx.itesm.perdafirulais.ui.search.SearchFragment
 
 class SearchFragment : Fragment() {
 
@@ -38,9 +43,6 @@ class SearchFragment : Fragment() {
         })
         val rvDog: RecyclerView = root.findViewById(R.id.rvDogs)
         val adapter = GroupAdapter<GroupieViewHolder>()
-        adapter.add(DogItem())
-        adapter.add(DogItem())
-        adapter.add(DogItem())
         rvDog.adapter = adapter
 
         fetchPublicaciones()
@@ -48,13 +50,19 @@ class SearchFragment : Fragment() {
     }
 
     private fun fetchPublicaciones() {
-        val ref = FirebaseDatabase.getInstance().getReference("/usuarios/")
-
+        val ref = FirebaseDatabase.getInstance().getReference("/publicaciones/perdidos")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(p0: DataSnapshot) {
-                p0.children.forEach {
-                    Log.d("NewMessage", it.toString())
+            override fun onDataChange(w0: DataSnapshot) {
+                val adapter = GroupAdapter<GroupieViewHolder>()
+                w0.children.forEach {
+                    Log.d("Wakanda", it.toString())
+                    val publicacion = it.getValue(Publicacion::class.java)
+                    if (publicacion != null) {
+                        adapter.add(SearchFragment.DogItem(publicacion))
+
+                    }
                 }
+                rvDogs.adapter = adapter
             }
 
             override fun onCancelled(p0: DatabaseError) {
@@ -66,16 +74,22 @@ class SearchFragment : Fragment() {
 
     }
 
-}
+    class DogItem(val publicacion: Publicacion) : Item<GroupieViewHolder>() {
+        override fun bind(viewHolder: GroupieViewHolder, position: Int) {
+            viewHolder.itemView.tvTitulo.text = publicacion.titulo
+            viewHolder.itemView.tvFecha.text = publicacion.fecha
+            viewHolder.itemView.tvRaza.text = publicacion.raza
+            Picasso.get().load(publicacion.uri).into(viewHolder.itemView.imPerro)
 
-class DogItem : Item<GroupieViewHolder>() {
-    override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-        //To change body of created functions use File | Settings | File Templates.
+            //To change body of created functions use File | Settings | File Templates.
+        }
+
+        override fun getLayout(): Int {
+            return R.layout.dog_row_rv
+
+        }
+
     }
 
-    override fun getLayout(): Int {
-        return R.layout.dog_row_rv
-
-    }
-
 }
+

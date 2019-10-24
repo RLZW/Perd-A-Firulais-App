@@ -93,7 +93,8 @@ class BrowsePicture : AppCompatActivity() {
         "German Wirehaired Pointer" to "German Wirehaired Pointer",
         "Giant Schnauzer" to "Schnauzer gigante",
         "Glen of Imaal Terrier" to "Glen of Imaal Terrier",
-        "Golden Retriever" to "Golden Retriever",
+        "Golden retriever" to "Golden Retriever",
+        "Retriever" to "Retriever",
         "Gordon Setter" to "Gordon Setter",
         "Great Dane" to "Gran Danés",
         "Great Pyrenees" to "Los grandes pirineos",
@@ -182,7 +183,7 @@ class BrowsePicture : AppCompatActivity() {
         "Street dog" to "Perro callejero"
     )
     val GALLERY = 1000
-    var razaActual: String = "desconocida"//Guardamos la raza del perro.
+    var razaActual: String = "Desconocida"//Guardamos la raza del perro.
     lateinit var bitmap: Bitmap// Guardamos la imagen para mandarla a la otra actividad
     var contienePerro = false //Con esto checamos is hay un perro.
     var encontroRaza = false // Con esto comprobamos si encontró raza.
@@ -194,9 +195,10 @@ class BrowsePicture : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_browse_picture)
         identificador = intent.getStringExtra("identificador")
-
         choosePhotoFromGallary()
         Log.d("_Browse", "El identificador es $identificador")
+
+
     }
 
     private fun manejarValidez(identificador: String) {
@@ -249,7 +251,6 @@ class BrowsePicture : AppCompatActivity() {
 
     }
 
-
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         super.onActivityResult(requestCode, resultCode, data)
@@ -281,17 +282,6 @@ class BrowsePicture : AppCompatActivity() {
         startActivityForResult(galleryIntent, GALLERY)
     }
 
-    private fun getImageUri(context: Context, inImage: Bitmap): Uri {
-        val bytes = ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-        val path = MediaStore.Images.Media.insertImage(
-            context.getContentResolver(),
-            inImage,
-            "Title",
-            null
-        )
-        return Uri.parse(path)
-    }
     fun runDetector(bitmap: Bitmap) {
         val image = FirebaseVisionImage.fromBitmap(bitmap)
         val options = FirebaseVisionCloudImageLabelerOptions.Builder()
@@ -340,11 +330,23 @@ class BrowsePicture : AppCompatActivity() {
         }
 
         AlertDialog.Builder(this)
-            .setTitle("Labels from cloud")
+            .setTitle("Etiquetas de la nube")
             .setMessage(labelsSb.toString())
             .create()
             .show()
     }
 
+
+    private fun getImageUri(context: Context, inImage: Bitmap): Uri {
+        val bytes = ByteArrayOutputStream()
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path = MediaStore.Images.Media.insertImage(
+            context.getContentResolver(),
+            inImage,
+            "Title",
+            null
+        )
+        return Uri.parse(path)
+    }
 
 }
