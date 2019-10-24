@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/bonesback" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/imgPerroRegistro"
         android:layout_width="250dp"
         android:layout_height="250dp"
@@ -30,7 +30,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon" />
+        app:srcCompat="@drawable/icon"
+        app:civ_border_width="1dp"
+        app:civ_border_color="#8CB9E3" />
 
     <EditText
         android:id="@+id/etTitulo"
@@ -78,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:ems="10"
-        android:hint="Ubicación donde fue encontrado"
+        android:hint="Ubicación donde se extravio"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/etTitulo"
         app:layout_constraintStart_toStartOf="@+id/etTitulo"

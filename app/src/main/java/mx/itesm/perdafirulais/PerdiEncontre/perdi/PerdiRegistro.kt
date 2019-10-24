@@ -171,8 +171,10 @@ class PerdiRegistro : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                     val intent = Intent(this, mx.itesm.perdafirulais.Publicacion::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        .putExtra("IDENTIFICADOR", "BUSCAR")
+                        .putExtra("PUBLICACION_KEY", publicacion.id)
                     startActivity(intent)
+                    finish()
                 }
                 .addOnFailureListener {
                     Log.d(tag, it.toString())

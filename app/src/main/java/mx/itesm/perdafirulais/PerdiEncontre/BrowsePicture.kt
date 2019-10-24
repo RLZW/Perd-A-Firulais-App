@@ -221,6 +221,7 @@ class BrowsePicture : AppCompatActivity() {
             intent.putExtra("raza", razaActual)
             intent.putExtra("uri", uri.toString())
             startActivity(intent)
+            finish()
         } else if (contienePerro) {
             Toast.makeText(
                 this, "La raza es $razaActual.",
@@ -235,8 +236,9 @@ class BrowsePicture : AppCompatActivity() {
             val uri = getImageUri(this, bitmap)
             intent.putExtra("raza", razaActual)
             intent.putExtra("uri", uri.toString())
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+
             startActivity(intent)
+            finish()
 
 
         } else {
@@ -245,8 +247,9 @@ class BrowsePicture : AppCompatActivity() {
                 Toast.LENGTH_LONG
             ).show()
             val intent = Intent(this, MainMenu::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
+            finish()
+
         }
 
     }
@@ -285,7 +288,7 @@ class BrowsePicture : AppCompatActivity() {
     fun runDetector(bitmap: Bitmap) {
         val image = FirebaseVisionImage.fromBitmap(bitmap)
         val options = FirebaseVisionCloudImageLabelerOptions.Builder()
-            .setConfidenceThreshold(0.8f)
+            .setConfidenceThreshold(0.75f)
             .build()
 
         val detector = FirebaseVision.getInstance()
@@ -302,8 +305,10 @@ class BrowsePicture : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
                 val intent = Intent(this, MainMenu::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+
                 startActivity(intent)
+                finish()
+
             }
 
     }

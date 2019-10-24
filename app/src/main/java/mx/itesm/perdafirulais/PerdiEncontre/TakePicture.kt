@@ -227,7 +227,7 @@ class TakePicture : AppCompatActivity() {
     fun runDetector(bitmap: Bitmap) {
         val image = FirebaseVisionImage.fromBitmap(bitmap)
         val options = FirebaseVisionCloudImageLabelerOptions.Builder()
-            .setConfidenceThreshold(0.8f)
+            .setConfidenceThreshold(0.75f)
             .build()
 
         val detector = FirebaseVision.getInstance()
@@ -244,8 +244,8 @@ class TakePicture : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
                 val intent = Intent(this, MainMenu::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
+                finish()
             }
 
     }
@@ -270,6 +270,7 @@ class TakePicture : AppCompatActivity() {
             intent.putExtra("raza", razaActual)
             intent.putExtra("uri", uri.toString())
             startActivity(intent)
+            finish()
         } else if (contienePerro) {
             Toast.makeText(
                 this, "La raza es $razaActual.",
@@ -284,9 +285,8 @@ class TakePicture : AppCompatActivity() {
             val uri = getImageUri(this, bitmap)
             intent.putExtra("raza", razaActual)
             intent.putExtra("uri", uri.toString())
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
-
+            finish()
 
         } else {
             Toast.makeText(
@@ -294,8 +294,8 @@ class TakePicture : AppCompatActivity() {
                 Toast.LENGTH_LONG
             ).show()
             val intent = Intent(this, MainMenu::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
+            finish()
         }
 
     }

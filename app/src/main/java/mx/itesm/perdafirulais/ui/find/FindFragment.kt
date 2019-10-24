@@ -1,5 +1,6 @@
 package mx.itesm.perdafirulais.ui.find
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -50,6 +51,9 @@ class FindFragment : Fragment() {
         return root
     }
 
+    companion object {
+        val PUBLICACION_KEY = "PUBLICACION_KEY"
+    }
     private fun fetchPublicaciones() {
         val ref = FirebaseDatabase.getInstance().getReference("/publicaciones/encontrados")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -64,6 +68,15 @@ class FindFragment : Fragment() {
                         adapter.add(DogItem(publicacion))
 
                     }
+                }
+                adapter.setOnItemClickListener { item, view ->
+                    val dogItem = item as DogItem
+                    val intent =
+                        Intent(view.context, mx.itesm.perdafirulais.Publicacion::class.java)
+                    val id = dogItem.publicacion.id.toString()
+                    intent.putExtra(PUBLICACION_KEY, id)
+                    intent.putExtra("IDENTIFICADOR", "ENCONTRAR")
+                    startActivity(intent)
                 }
                 rvDogs.adapter = adapter
             }
@@ -95,6 +108,7 @@ class FindFragment : Fragment() {
 
     }
 }
+
 
 private fun RequestCreator.into(imPerro: View?) {
     //No es necesario implementar es para eliminar un error con la libreria de circle view y la interaccion con Picasso

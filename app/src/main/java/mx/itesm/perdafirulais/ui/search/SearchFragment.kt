@@ -1,5 +1,6 @@
 package mx.itesm.perdafirulais.ui.search
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,6 +24,7 @@ import kotlinx.android.synthetic.main.dog_row_rv.view.*
 import kotlinx.android.synthetic.main.fragment_search.*
 import mx.itesm.perdafirulais.R
 import mx.itesm.perdafirulais.models.Publicacion
+import mx.itesm.perdafirulais.ui.find.FindFragment
 import mx.itesm.perdafirulais.ui.search.SearchFragment
 
 class SearchFragment : Fragment() {
@@ -55,6 +57,7 @@ class SearchFragment : Fragment() {
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(w0: DataSnapshot) {
                 val adapter = GroupAdapter<GroupieViewHolder>()
+
                 w0.children.forEach {
                     Log.d("Wakanda", it.toString())
                     val publicacion = it.getValue(Publicacion::class.java)
@@ -62,6 +65,15 @@ class SearchFragment : Fragment() {
                         adapter.add(SearchFragment.DogItem(publicacion))
 
                     }
+                }
+                adapter.setOnItemClickListener { item, view ->
+                    val dogItem = item as DogItem
+                    val intent =
+                        Intent(view.context, mx.itesm.perdafirulais.Publicacion::class.java)
+                    val id = dogItem.publicacion.id.toString()
+                    intent.putExtra(FindFragment.PUBLICACION_KEY, id)
+                    intent.putExtra("IDENTIFICADOR", "BUSCAR")
+                    startActivity(intent)
                 }
                 rvDogs.adapter = adapter
             }
