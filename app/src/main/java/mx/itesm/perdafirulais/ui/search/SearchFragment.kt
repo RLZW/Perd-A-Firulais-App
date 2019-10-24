@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
+import com.squareup.picasso.RequestCreator
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
@@ -91,5 +92,10 @@ class SearchFragment : Fragment() {
 
     }
 
+}
+
+private fun RequestCreator.into(imPerro: View?) {
+    //No es necesario implementar es para eliminar un error con la libreria de circle view y la interaccion con Picasso
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 }
 
