@@ -11,14 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PerdiRegistro"></activity>
-        <activity android:name=".EncontreRegistro" />
-        <activity android:name=".PerdiSeleccion" />
-        <activity android:name=".EncontreSeleccion" />
+        <activity android:name=".Publicacion"></activity>
+        <activity android:name="mx.itesm.perdafirulais.PerdiEncontre.perdi.PerdiRegistro" />
+        <activity android:name="mx.itesm.perdafirulais.PerdiEncontre.encontre.EncontreRegistro" />
+        <activity android:name="mx.itesm.perdafirulais.PerdiEncontre.perdi.PerdiSeleccionBotonesFotos" />
+        <activity android:name="mx.itesm.perdafirulais.PerdiEncontre.encontre.EncontreSeleccionBotonesFotos" />
         <activity android:name=".Info" />
-        <activity android:name=".Register" />
-        <activity android:name=".Camera.BrowsePicture" />
-        <activity android:name=".Camera.TakePicture" />
+        <activity android:name=".autenticacion.Register" />
+        <activity android:name="mx.itesm.perdafirulais.PerdiEncontre.BrowsePicture" />
+        <activity android:name="mx.itesm.perdafirulais.PerdiEncontre.TakePicture" />
         <activity android:name=".MainMenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".autenticacion.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

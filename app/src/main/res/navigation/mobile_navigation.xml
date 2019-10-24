@@ -10,6 +10,11 @@
         android:name="mx.itesm.perdafirulais.ui.profile.ProfileFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/navigation_find"
+        android:name="mx.itesm.perdafirulais.ui.find.FindFragment"
+        android:label="Encontrar"
+        tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/navigation_dashboard"

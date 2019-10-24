@@ -16,10 +16,9 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import mx.itesm.perdafirulais.Camera.BrowsePicture
-import mx.itesm.perdafirulais.LoginActivity
+import mx.itesm.perdafirulais.autenticacion.LoginActivity
 import mx.itesm.perdafirulais.R
-import mx.itesm.perdafirulais.Register
+import mx.itesm.perdafirulais.autenticacion.Register
 
 class ProfileFragment : Fragment() {
 
@@ -56,7 +55,6 @@ class ProfileFragment : Fragment() {
 
     private fun fetchUsuario(usuariot: TextView, telefono: TextView, tvEmail: TextView) {
         val uid = FirebaseAuth.getInstance().uid
-
         val ref = FirebaseDatabase.getInstance().getReference("/usuarios/${uid}")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {

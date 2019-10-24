@@ -10,8 +10,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import mx.itesm.perdafirulais.PerdiSeleccion
-import mx.itesm.perdafirulais.EncontreSeleccion
+import mx.itesm.perdafirulais.PerdiEncontre.perdi.PerdiSeleccionBotonesFotos
+import mx.itesm.perdafirulais.PerdiEncontre.encontre.EncontreSeleccionBotonesFotos
 import mx.itesm.perdafirulais.R
 
 class AddFragment : Fragment() {
@@ -34,13 +34,13 @@ class AddFragment : Fragment() {
 
         val buttonEncontre: Button = root.findViewById(R.id.btnEncontre)
         buttonEncontre.setOnClickListener {
-            val intent = Intent(activity, EncontreSeleccion::class.java)
+            val intent = Intent(activity, EncontreSeleccionBotonesFotos::class.java)
             activity?.startActivity(intent)
         }
 
         val buttonPerdi: Button = root.findViewById(R.id.btnPerdi)
         buttonPerdi.setOnClickListener {
-            val intent = Intent(activity, PerdiSeleccion::class.java)
+            val intent = Intent(activity, PerdiSeleccionBotonesFotos::class.java)
             activity?.startActivity(intent)
         }
         return root

@@ -1,8 +1,10 @@
-package mx.itesm.perdafirulais.Camera
+package mx.itesm.perdafirulais.PerdiEncontre
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -13,6 +15,9 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.firebase.ml.vision.label.FirebaseVisionCloudImageLabelerOptions
 import com.google.firebase.ml.vision.label.FirebaseVisionImageLabel
 import mx.itesm.perdafirulais.*
+import mx.itesm.perdafirulais.PerdiEncontre.encontre.EncontreRegistro
+import mx.itesm.perdafirulais.PerdiEncontre.perdi.PerdiRegistro
+import java.io.ByteArrayOutputStream
 import java.io.IOException
 
 class BrowsePicture : AppCompatActivity() {
@@ -210,8 +215,9 @@ class BrowsePicture : AppCompatActivity() {
             } else {
                 intent = Intent(this, PerdiRegistro::class.java)
             }
+            val uri = getImageUri(this, bitmap)
             intent.putExtra("raza", razaActual)
-            intent.putExtra("bitmap", bitmap)
+            intent.putExtra("uri", uri.toString())
             startActivity(intent)
         } else if (contienePerro) {
             Toast.makeText(
@@ -224,8 +230,10 @@ class BrowsePicture : AppCompatActivity() {
             } else {
                 intent = Intent(this, PerdiRegistro::class.java)
             }
+            val uri = getImageUri(this, bitmap)
             intent.putExtra("raza", razaActual)
-            intent.putExtra("bitmap", bitmap)
+            intent.putExtra("uri", uri.toString())
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
 
 
@@ -235,6 +243,7 @@ class BrowsePicture : AppCompatActivity() {
                 Toast.LENGTH_LONG
             ).show()
             val intent = Intent(this, MainMenu::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         }
 
@@ -272,7 +281,17 @@ class BrowsePicture : AppCompatActivity() {
         startActivityForResult(galleryIntent, GALLERY)
     }
 
-
+    private fun getImageUri(context: Context, inImage: Bitmap): Uri {
+        val bytes = ByteArrayOutputStream()
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path = MediaStore.Images.Media.insertImage(
+            context.getContentResolver(),
+            inImage,
+            "Title",
+            null
+        )
+        return Uri.parse(path)
+    }
     fun runDetector(bitmap: Bitmap) {
         val image = FirebaseVisionImage.fromBitmap(bitmap)
         val options = FirebaseVisionCloudImageLabelerOptions.Builder()
@@ -293,6 +312,7 @@ class BrowsePicture : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
                 val intent = Intent(this, MainMenu::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }
 

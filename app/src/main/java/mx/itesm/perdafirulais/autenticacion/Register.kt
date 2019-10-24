@@ -1,4 +1,4 @@
-package mx.itesm.perdafirulais
+package mx.itesm.perdafirulais.autenticacion
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,8 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_register.*
+import mx.itesm.perdafirulais.MainMenu
+import mx.itesm.perdafirulais.R
 
 class Register : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
@@ -89,7 +91,12 @@ class Register : AppCompatActivity() {
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/usuarios/$uid")
         val user =
-            User(uid, etUser.text.toString(), etMail.text.toString(), etPhone.text.toString())
+            User(
+                uid,
+                etUser.text.toString(),
+                etMail.text.toString(),
+                etPhone.text.toString()
+            )
 
         ref.setValue(user)
             .addOnSuccessListener {

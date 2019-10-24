@@ -1,4 +1,4 @@
-package mx.itesm.perdafirulais
+package mx.itesm.perdafirulais.autenticacion
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,9 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_login.*
+import mx.itesm.perdafirulais.Info
+import mx.itesm.perdafirulais.MainMenu
+import mx.itesm.perdafirulais.R
 
 class LoginActivity : AppCompatActivity() {
 
@@ -74,5 +77,4 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
     }
-
 }

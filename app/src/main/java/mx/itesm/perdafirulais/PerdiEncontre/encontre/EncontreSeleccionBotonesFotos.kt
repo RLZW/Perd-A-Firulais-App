@@ -1,14 +1,14 @@
-package mx.itesm.perdafirulais
+package mx.itesm.perdafirulais.PerdiEncontre.encontre
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import kotlinx.android.synthetic.main.activity_encontre_seleccion.*
-import mx.itesm.perdafirulais.Camera.BrowsePicture
-import mx.itesm.perdafirulais.Camera.TakePicture
+import mx.itesm.perdafirulais.R
+import mx.itesm.perdafirulais.PerdiEncontre.BrowsePicture
+import mx.itesm.perdafirulais.PerdiEncontre.TakePicture
 
-class EncontreSeleccion : AppCompatActivity() {
+class EncontreSeleccionBotonesFotos : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

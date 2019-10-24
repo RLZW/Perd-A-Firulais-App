@@ -1,12 +1,13 @@
-package mx.itesm.perdafirulais
+package mx.itesm.perdafirulais.PerdiEncontre.perdi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import mx.itesm.perdafirulais.R
 
-class PerdiSeleccion : AppCompatActivity() {
+class PerdiRegistro : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_busco_seleccion)
+        setContentView(R.layout.activity_perdi_registro)
     }
 }
