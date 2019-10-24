@@ -1,8 +1,10 @@
 package mx.itesm.perdafirulais.PerdiEncontre
 
+import android.Manifest
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -10,10 +12,13 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.firebase.ml.vision.label.FirebaseVisionCloudImageLabelerOptions
 import com.google.firebase.ml.vision.label.FirebaseVisionImageLabel
+import kotlinx.android.synthetic.main.activity_take_picture.*
 import mx.itesm.perdafirulais.*
 import mx.itesm.perdafirulais.PerdiEncontre.encontre.EncontreRegistro
 import mx.itesm.perdafirulais.PerdiEncontre.perdi.PerdiRegistro
@@ -190,10 +195,30 @@ class BrowsePicture : AppCompatActivity() {
     lateinit var identificador: String
 
 
+    private fun setupPermissions() {
+        val permission = ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            Log.i("Permiso", "Permission to record denied")
+            makeRequest()
+        }
+    }
+
+    private fun makeRequest() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+            101
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_browse_picture)
+        setupPermissions()
         identificador = intent.getStringExtra("identificador")
         choosePhotoFromGallary()
         Log.d("_Browse", "El identificador es $identificador")

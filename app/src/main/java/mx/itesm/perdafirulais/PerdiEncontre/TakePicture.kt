@@ -1,8 +1,10 @@
 package mx.itesm.perdafirulais.PerdiEncontre
 
+import android.Manifest
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -11,6 +13,8 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.firebase.ml.vision.label.FirebaseVisionCloudImageLabelerOptions
@@ -189,20 +193,31 @@ class TakePicture : AppCompatActivity() {
     var encontroRaza = false // Con esto comprobamos si encontró raza.
     lateinit var identificador: String
 
+    private fun setupPermissions() {
+        val permission = ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
 
-    override fun onRequestPermissionsResult( //Pedimos permiso para cámara
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        camera_view.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            Log.i("Permiso", "Permission to record denied")
+            makeRequest()
+        }
+    }
+
+    private fun makeRequest() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+            101
+        )
     }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_take_picture)
+        setupPermissions()
         identificador = intent.getStringExtra("identificador")
 
         Log.d("_Browse", "El identificador es $identificador")

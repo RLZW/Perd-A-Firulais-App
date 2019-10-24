@@ -3,6 +3,8 @@
     package="mx.itesm.perdafirulais">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRIE_EXTERNAL_STORAGE" />
+
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application

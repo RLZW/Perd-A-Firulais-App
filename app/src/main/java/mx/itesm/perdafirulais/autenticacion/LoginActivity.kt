@@ -1,10 +1,12 @@
 package mx.itesm.perdafirulais.autenticacion
 
+import android.Manifest
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_login.*
@@ -13,6 +15,7 @@ import mx.itesm.perdafirulais.MainMenu
 import mx.itesm.perdafirulais.R
 
 class LoginActivity : AppCompatActivity() {
+
 
     private lateinit var mAuth: FirebaseAuth
     private var tag = "_Login"
@@ -36,12 +39,14 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
         // Write a message to the database
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("message")
 
         myRef.setValue("Hello, World!")
     }
+
 
     private fun manejarLogin() {
         val mail = etMail.text.toString()
@@ -77,4 +82,6 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
     }
+
+
 }
