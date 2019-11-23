@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -33,6 +34,7 @@ class Publicacion : AppCompatActivity() {
         } else {
             if (identificador == "ENCONTRAR") {
                 fetch_publicacion(id_publicacion, "encontrados")
+
             } else {
                 fetch_publicacion(id_publicacion, "perdidos")
             }
@@ -42,6 +44,8 @@ class Publicacion : AppCompatActivity() {
     }
 
     private fun fetch_publicacion(id_publicacion: String, referencia: String) {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
+
         val ref = FirebaseDatabase.getInstance()
             .getReference("/publicaciones/${referencia}/${id_publicacion}")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -55,12 +59,16 @@ class Publicacion : AppCompatActivity() {
                         etComentarios.text = publicacion.comentarios
                         etUbicacion.text = publicacion.ubicacion
                         Picasso.get().load(publicacion.uri).into(imPublicacion)
+                        if(uid != publicacion.id_creador){
+
+                        }
                         btnLlamar.setOnClickListener {
                             val intent = Intent(Intent.ACTION_DIAL);
                             intent.data = Uri.parse("tel:${publicacion.telefono}")
                             startActivity(intent)
                         }
                     }
+
                 }
             }
 

@@ -70,6 +70,7 @@ class ProfileFragment : Fragment() {
             }
 
             override fun onCancelled(p0: DatabaseError) {
+                print("Error")
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 

@@ -4,8 +4,12 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRIE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <meta-data
+        android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+        android:value="label" />
 
     <application
         android:allowBackup="true"
@@ -14,15 +18,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Publicacion"></activity>
-        <activity android:name="mx.itesm.perdafirulais.PerdiEncontre.perdi.PerdiRegistro" />
-        <activity android:name="mx.itesm.perdafirulais.PerdiEncontre.encontre.EncontreRegistro" />
-        <activity android:name="mx.itesm.perdafirulais.PerdiEncontre.perdi.PerdiSeleccionBotonesFotos" />
-        <activity android:name="mx.itesm.perdafirulais.PerdiEncontre.encontre.EncontreSeleccionBotonesFotos" />
+        <service
+            android:name=".FirebaseNotificactions"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.android.c2dm.internet.RECIEVE"/>
+            </intent-filter>
+
+        </service>
+
+        <activity android:name=".Publicacion" />
+        <activity android:name=".PerdiEncontre.perdi.PerdiRegistro" />
+        <activity android:name=".PerdiEncontre.encontre.EncontreRegistro" />
+        <activity android:name=".PerdiEncontre.perdi.PerdiSeleccionBotonesFotos" />
+        <activity android:name=".PerdiEncontre.encontre.EncontreSeleccionBotonesFotos" />
         <activity android:name=".Info" />
         <activity android:name=".autenticacion.Register" />
-        <activity android:name="mx.itesm.perdafirulais.PerdiEncontre.BrowsePicture" />
-        <activity android:name="mx.itesm.perdafirulais.PerdiEncontre.TakePicture" />
+        <activity android:name=".PerdiEncontre.BrowsePicture" />
+        <activity android:name=".PerdiEncontre.TakePicture" />
         <activity android:name=".MainMenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

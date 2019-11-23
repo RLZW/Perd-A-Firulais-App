@@ -242,7 +242,7 @@ class TakePicture : AppCompatActivity() {
     fun runDetector(bitmap: Bitmap) {
         val image = FirebaseVisionImage.fromBitmap(bitmap)
         val options = FirebaseVisionCloudImageLabelerOptions.Builder()
-            .setConfidenceThreshold(0.75f)
+            .setConfidenceThreshold(0.65f)
             .build()
 
         val detector = FirebaseVision.getInstance()

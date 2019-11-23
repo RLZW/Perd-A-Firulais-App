@@ -26,6 +26,7 @@ import java.io.ByteArrayOutputStream
 import java.io.IOException
 
 class BrowsePicture : AppCompatActivity() {
+    val TAG = "_Deteccion"
     val listRazaPerros = mutableMapOf(
         "Affenpinscher" to "Affenpinscher",
         "Afghan Hound" to "Sabueso afgano",
@@ -311,11 +312,12 @@ class BrowsePicture : AppCompatActivity() {
     }
 
     fun runDetector(bitmap: Bitmap) {
+        Log.d(TAG, "Se empezo a correr el dector.")
+
         val image = FirebaseVisionImage.fromBitmap(bitmap)
         val options = FirebaseVisionCloudImageLabelerOptions.Builder()
             .setConfidenceThreshold(0.75f)
             .build()
-
         val detector = FirebaseVision.getInstance()
             .getCloudImageLabeler(options)
         detector.processImage(image)

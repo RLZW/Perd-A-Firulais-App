@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout2"
     android:layout_width="match_parent"
+    android:background="@drawable/container"
     android:layout_height="wrap_content">
 
     <TextView
@@ -32,20 +33,21 @@
         app:layout_constraintStart_toStartOf="@+id/tvTitulo"
         app:layout_constraintTop_toTopOf="@+id/imPerro" />
 
-    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imPerro"
         android:layout_width="74dp"
         android:layout_height="68dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
         android:src="@drawable/icon"
+        app:civ_border_color="#A6F0F0F0"
+        app:civ_border_width="1dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-
-        app:civ_border_width="1dp"
-        app:civ_border_color="#8CB9E3" />
+        app:layout_constraintVertical_bias="0.0" />
 
 
     <TextView
