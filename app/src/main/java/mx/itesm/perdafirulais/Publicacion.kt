@@ -2,9 +2,10 @@ package mx.itesm.perdafirulais
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -13,7 +14,6 @@ import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_publicacion.*
 import mx.itesm.perdafirulais.models.Publicacion
-import org.jetbrains.anko.makeCall
 
 class Publicacion : AppCompatActivity() {
 
@@ -33,17 +33,21 @@ class Publicacion : AppCompatActivity() {
 
         } else {
             if (identificador == "ENCONTRAR") {
-                fetch_publicacion(id_publicacion, "encontrados")
+                fetch_publicacion(id_publicacion, "encontrados", this)
 
             } else {
-                fetch_publicacion(id_publicacion, "perdidos")
+                fetch_publicacion(id_publicacion, "perdidos", this)
             }
 
         }
 
     }
 
-    private fun fetch_publicacion(id_publicacion: String, referencia: String) {
+    private fun fetch_publicacion(
+        id_publicacion: String,
+        referencia: String,
+        acti: mx.itesm.perdafirulais.Publicacion
+    ) {
         val uid = FirebaseAuth.getInstance().currentUser?.uid
 
         val ref = FirebaseDatabase.getInstance()
@@ -59,8 +63,23 @@ class Publicacion : AppCompatActivity() {
                         etComentarios.text = publicacion.comentarios
                         etUbicacion.text = publicacion.ubicacion
                         Picasso.get().load(publicacion.uri).into(imPublicacion)
-                        if(uid != publicacion.id_creador){
-
+                        //Funcionalidad para eliminar si es creador de la
+                        if (uid == publicacion.id_creador) {
+                            btnEliminar.visibility = View.VISIBLE
+                            btnEliminar.setOnClickListener {
+                                ref.removeValue()
+                                    .addOnSuccessListener {
+                                        Toast.makeText(
+                                            acti,
+                                            "La publicación se elimino con éxito.",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                        val intent = Intent(acti, MainMenu::class.java)
+                                        intent.flags =
+                                            Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                        startActivity(intent)
+                                    }
+                            }
                         }
                         btnLlamar.setOnClickListener {
                             val intent = Intent(Intent.ACTION_DIAL);

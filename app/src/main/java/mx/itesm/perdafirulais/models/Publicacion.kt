@@ -1,7 +1,5 @@
 package mx.itesm.perdafirulais.models
 
-import android.net.Uri
-
 data class Publicacion(
     var id: String, var uri: String, var raza: String, var fecha: String,
     var id_creador: String, var telefono: String, var estado: String,

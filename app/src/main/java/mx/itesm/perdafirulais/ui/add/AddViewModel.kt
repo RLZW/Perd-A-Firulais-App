@@ -10,5 +10,4 @@ class AddViewModel : ViewModel() {
         value = "Agregar Firulais"
     }
     val text: LiveData<String> = _text
-
 }

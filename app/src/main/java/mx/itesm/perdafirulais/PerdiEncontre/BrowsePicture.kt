@@ -7,21 +7,21 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.firebase.ml.vision.label.FirebaseVisionCloudImageLabelerOptions
 import com.google.firebase.ml.vision.label.FirebaseVisionImageLabel
-import kotlinx.android.synthetic.main.activity_take_picture.*
-import mx.itesm.perdafirulais.*
+import mx.itesm.perdafirulais.MainMenu
 import mx.itesm.perdafirulais.PerdiEncontre.encontre.EncontreRegistro
 import mx.itesm.perdafirulais.PerdiEncontre.perdi.PerdiRegistro
+import mx.itesm.perdafirulais.R
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 
@@ -129,6 +129,7 @@ class BrowsePicture : AppCompatActivity() {
         "Miniature Bull Terrier" to "Bull Terrier miniatura",
         "Miniature Pinscher" to "Pinscher miniatura",
         "Miniature Schnauzer" to "Schnauzer miniatura",
+        "Schnauzer" to "Schnauzer",
         "Neapolitan Mastiff" to "Mastín Napolitano",
         "Newfoundland" to "Terranova",
         "Norfolk Terrier" to "Terrier de Norfolk",
@@ -316,7 +317,7 @@ class BrowsePicture : AppCompatActivity() {
 
         val image = FirebaseVisionImage.fromBitmap(bitmap)
         val options = FirebaseVisionCloudImageLabelerOptions.Builder()
-            .setConfidenceThreshold(0.75f)
+            .setConfidenceThreshold(0.65f)
             .build()
         val detector = FirebaseVision.getInstance()
             .getCloudImageLabeler(options)
